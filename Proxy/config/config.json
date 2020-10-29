@@ -1,0 +1,7 @@
+{
+  "server": {
+    "api_server_domain": "localhost:3001",
+    "server_api_metrics": "localhost:9999/metrics/metrics",
+    "server_frontend_domain": "localhost:3000"
+  }
+}

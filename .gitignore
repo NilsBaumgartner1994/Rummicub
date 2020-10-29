@@ -1,0 +1,11 @@
+/API/node_modules/
+/Proxy/node_modules/
+/Web/node_modules/
+
+.idea/
+
+.DS_Store
+
+API/logs/
+
+Proxy/logs/
