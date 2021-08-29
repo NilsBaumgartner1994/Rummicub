@@ -63,13 +63,23 @@ export class ListPlayers extends Component {
         let statistics = {};
         statistics.amountGames = playersGames.length;
         let sum = 0;
-        for(let i=0; i<playersGames.length; i++){
+	let worstRound = 0;
+	let wins = 0;
+	let amountGames = playersGames.length;
+        for(let i=0; i<amountGames; i++){
             let playersGame = playersGames[i];
             let points = playersGame.points;
             sum+=points;
+	    worstRound = worstRound < points ? points : worstRound;
+	    wins = points === 0 ? wins+1 : wins;
         }
+	statistics.wins = wins;
+	statistics.looses = amountGames - wins;
+	statistics.percentageWins = amountGames > 0 ? 100*((wins/amountGames).toFixed(2)) : "?";
+
         statistics.sum = sum;
         statistics.avg = 0;
+	statistics.worstRound = worstRound;
         if(playersGames.length > 0){
             statistics.avg = statistics.sum / statistics.amountGames;
         }
@@ -143,6 +153,10 @@ export class ListPlayers extends Component {
         let avg = playersStatistic.avg || 0;
         let amountGames = playersStatistic.amountGames || "?";
         let sum = playersStatistic.sum || "?";
+	let worstRound = playersStatistic.worstRound || "?";
+	let wins = playersStatistic.wins;
+	let looses = playersStatistic.looses || "?";
+	let percentageWins = playersStatistic.percentageWins || "?";
 
         return (
             <div className="p-col-6">
@@ -153,6 +167,9 @@ export class ListPlayers extends Component {
                         <div>{"Durchschnittliche Punkte: "+avg.toFixed(2)}</div>
                         <div>{"Anzahl Spiele: "+amountGames}</div>
                         <div>{"Punkte Gesamt: "+sum}</div>
+			<div>{"Schlechteste Runde: "+worstRound}</div>
+			<div>{"Gewonnen: "+wins+" - Verloren: "+looses}</div>
+			<div>{percentageWins+" % Gewonnen"}</div>
                     </div>
                 </Card>
             </div>
@@ -173,6 +190,7 @@ export class ListPlayers extends Component {
 
                 <div className="p-grid">
                     {this.renderBackButton()}
+		    {this.renderBackButton()}
                     {this.renderPlayers()}
                 </div>
             </div>

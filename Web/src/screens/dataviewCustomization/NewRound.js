@@ -86,6 +86,7 @@ export class NewRound extends Component {
         delete playerPoints[player.id];
         if(!!event){
             let value = event.target.value;
+	    console.log(value);
             if(value!==""){
                 playerPoints[player.id] = parseInt(value);
             }
@@ -105,10 +106,11 @@ export class NewRound extends Component {
 
         console.log(this.state.playerPoints);
         let playersPoints = this.state.playerPoints[player.id];
-        let value = playersPoints || "";
-        console.log(value);
+	let pointsGiven = !isNaN(playersPoints);
+        let value = !pointsGiven ? "" : playersPoints;
+        console.log("Value: "+value);
 
-        let participated = !!playersPoints;
+        let participated = pointsGiven;
         let filter = participated ? {} : {"filter":"grayscale(100%)"}
 
         return (
@@ -118,7 +120,7 @@ export class NewRound extends Component {
                         <img style={filter} width="100%" height="auto" src={player.image} />
                         <br></br>
                         <div className="p-inputgroup" style={{"width":"100%"}}>
-                            <InputText id="float-input" keyfilter={"int"} placeholder={"Punkte"} type="text" style={{"width":"100%"}} value={value} onChange={this.handleEditPoints.bind(this,player)} />
+                            <InputText inputmode="numeric" id="float-input" keyfilter={"int"} placeholder={"Punkte"} type="text" style={{"width":"80%"}} value={value} onChange={this.handleEditPoints.bind(this,player)} />
                             {this.renderClearValueButton(player)}
                         </div>
                     </div>

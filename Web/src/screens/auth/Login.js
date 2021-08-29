@@ -41,7 +41,13 @@ export class Login extends Component {
     async loadInformations(){
         let auths = await AuthConnector.getAuths();
         let authSelectItems = this.getAuthSelectItems(auths);
-        let selectedAuth = !!authSelectItems && !!authSelectItems[1] ? authSelectItems[1].value : null;
+        let selectedAuth = null;
+	if(!!authSelectItems && authSelectItems.length > 0){
+	    selectedAuth = authSelectItems[0].value;
+	    if(!!authSelectItems[1]){
+		selectedAuth = authSelectItems[1].value;
+	    }
+	}
         let state = {
             auths: auths,
             authSelectItems: authSelectItems,

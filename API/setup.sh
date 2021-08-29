@@ -10,9 +10,6 @@ scriptName="API"
 comments=()
 commands=()
 
-comments+=("Installing latest npm version")
-commands+=("curl -L https://www.npmjs.com/install.sh | sh")
-
 comments+=("Installing npm dependecies")
 commands+=("npm install")
 

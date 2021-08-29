@@ -5,7 +5,7 @@ import path from "path";
 
 const fs = require("fs"); //file-system
 //const Jimp = require('jimp'); // JavaScript Image Manipulation Program - https://www.npmjs.com/package/jimp
-var sharp = require('sharp'); //use sharp its better than jimp - https://sharp.pixelplumbing.com/performance
+var sharp = require('sharp');
 var smartcrop = require('smartcrop-sharp'); //smartcrop to crop images automatically
 
 const developerAllowWithoutPermission = false; //better stay this turnes of

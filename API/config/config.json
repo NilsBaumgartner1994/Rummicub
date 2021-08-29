@@ -31,9 +31,9 @@
       "disabled": true,
       "methods": {
         "configList": true,
-        "database": true,
+        "database": false,
         "ldap": false,
-        "myuos": true
+        "myuos": false
       }
     }
   },

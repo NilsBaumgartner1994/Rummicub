@@ -42,7 +42,7 @@ const helmet = require("helmet"); //Security
 const tls = require("tls");
 const cluster = require("cluster"); //distibuting this server on all cores of the server
 var numCPUs = os.cpus().length;
-numCPUs = 1;
+//numCPUs = 1;
 const redis = require("redis"); //for caching
 const cors = require("cors"); // for cross origin allow support
 
